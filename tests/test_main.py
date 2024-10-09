@@ -1,6 +1,8 @@
 import pytest
 from calculatrice.main import Calculator
 
+# comment
+
 
 def test_add():
     calc = Calculator()
