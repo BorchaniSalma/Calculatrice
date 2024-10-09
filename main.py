@@ -52,4 +52,4 @@ if __name__ == "__main__":
     print(calc.subtract(10, 4))
     print(calc.multiply(3, 3))
     print(calc.divide(8, 2))
-    print(calc.average([1, 2, 3, 4, 5]))
+    print(calc.average([1, 3, 3, 4, 5]))
