@@ -1,4 +1,3 @@
-# tests/test_main.py
 import pytest
 
 from main import Calculator

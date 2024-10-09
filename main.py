@@ -1,4 +1,3 @@
-# main.py
 import logging
 from typing import List
 
