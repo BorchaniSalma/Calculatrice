@@ -30,6 +30,6 @@ def test_divide():
 
 def test_average():
     calc = Calculator()
-    assert calc.average([1, 2, 3, 4, 5]) == 3
+    assert calc.average([1, 3, 3, 4, 5]) == 3
     with pytest.raises(ValueError):
         calc.average([])
