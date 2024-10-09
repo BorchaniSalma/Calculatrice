@@ -1,6 +1,5 @@
 import pytest
-
-from main import Calculator
+from calculatrice.main import Calculator
 
 
 def test_add():
