@@ -1,6 +1,10 @@
 import pytest
 import math
+import calculatrice.main
+import calculatrice.scientific
+import calculatrice.statistics
 from calculatrice.scientific import Scientific
+
 
 def test_power():
     calc = Scientific()
@@ -8,6 +12,7 @@ def test_power():
     assert calc.power(2, 3) == 8  # 2^3 = 8
     assert calc.power(5, 0) == 1  # 5^0 = 1
     assert calc.power(3, -2) == 1 / 9  # 3^-2 = 1 / 9
+
 
 def test_logarithm():
     calc = Scientific()

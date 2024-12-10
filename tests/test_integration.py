@@ -1,12 +1,15 @@
 from calculatrice.scientific import Scientific
 from calculatrice.statistics import Statistics
 from calculatrice.main import Calculator
+import calculatrice.main
+import calculatrice.scientific
+import calculatrice.statistics
 import pytest
 import os
 
-current_directory = os.path.dirname(os.path.abspath(__file__))
-new_path = os.path.abspath(os.path.join(current_directory, "../"))
-os.chdir(new_path)
+# current_directory = os.path.dirname(os.path.abspath(__file__))
+# new_path = os.path.abspath(os.path.join(current_directory, "../"))
+# os.chdir(new_path)
 
 # comment to test
 

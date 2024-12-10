@@ -1,6 +1,9 @@
 import math
 
 import pytest
+import calculatrice.main
+import calculatrice.scientific
+import calculatrice.statistics
 from calculatrice.main import Calculator
 from calculatrice.scientific import Scientific
 from calculatrice.statistics import Statistics
@@ -16,6 +19,8 @@ def test_add():
     assert calc.add(0.5, 1.5) == 2.0  # Testing with float numbers
 
 # Test subtract method
+
+
 def test_subtract():
     calc = Calculator()
     # Valid cases
@@ -25,6 +30,8 @@ def test_subtract():
     assert calc.subtract(2.5, 1.0) == 1.5  # Testing with float numbers
 
 # Test multiply method
+
+
 def test_multiply():
     calc = Calculator()
     # Valid cases
@@ -34,6 +41,8 @@ def test_multiply():
     assert calc.multiply(1.5, 2.0) == 3.0  # Testing with float numbers
 
 # Test divide method
+
+
 def test_divide():
     calc = Calculator()
     # Valid cases
@@ -49,6 +58,8 @@ def test_divide():
     assert calc.divide(-10, 2) == -5
 
 # Test average method
+
+
 def test_average():
     calc = Calculator()
     # Valid cases
@@ -67,6 +78,8 @@ def test_average():
     assert calc.average([1000000, 2000000, 3000000]) == 2000000
 
 # Additional test for logging behavior (not common in unit tests, but useful for debugging)
+
+
 def test_logging_for_operations(caplog):
     calc = Calculator()
 
@@ -89,6 +102,7 @@ def test_power():
     assert calc.power(5, 0) == 1  # 5^0 = 1
     assert calc.power(3, -2) == 1 / 9  # 3^-2 = 1 / 9
 
+
 def test_logarithm():
     calc = Scientific()
     # Valid cases
@@ -103,6 +117,7 @@ def test_logarithm():
     with pytest.raises(ValueError):
         calc.logarithm(-10, 10)  # Logarithm of negative numbers is undefined
 
+
 def test_median():
     calc = Statistics()
     # Valid cases
@@ -114,11 +129,14 @@ def test_median():
     with pytest.raises(ValueError):
         calc.median([])  # Empty list
 
+
 def test_standard_deviation():
     calc = Statistics()
     # Valid cases
-    assert math.isclose(calc.standard_deviation([1, 2, 3, 4, 5]), 1.4142135623730951, rel_tol=1e-9)
-    assert math.isclose(calc.standard_deviation([10, 20, 30]), 8.16496580927726, rel_tol=1e-9)
+    assert math.isclose(calc.standard_deviation(
+        [1, 2, 3, 4, 5]), 1.4142135623730951, rel_tol=1e-9)
+    assert math.isclose(calc.standard_deviation(
+        [10, 20, 30]), 8.16496580927726, rel_tol=1e-9)
 
     # Edge cases
     with pytest.raises(ValueError):
