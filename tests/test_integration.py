@@ -1,3 +1,6 @@
+from calculatrice.scientific import Scientific
+from calculatrice.statistics import Statistics
+from calculatrice.main import Calculator
 import pytest
 import os
 
@@ -5,10 +8,7 @@ current_directory = os.path.dirname(os.path.abspath(__file__))
 new_path = os.path.abspath(os.path.join(current_directory, "../"))
 os.chdir(new_path)
 
-
-from calculatrice.main import Calculator
-from calculatrice.statistics import Statistics
-from calculatrice.scientific import Scientific
+# comment to test
 
 
 @pytest.fixture
@@ -58,6 +58,7 @@ def test_combined_operations(calc, stats, sci):
     numbers = [2, 4, 6, 8, 10]
     avg = calc.average(numbers)  # Step 1: Average
     squared_avg = sci.power(avg, 2)  # Step 2: Square the average
-    stdev = stats.standard_deviation(numbers)  # Step 3: Calculate standard deviation
+    # Step 3: Calculate standard deviation
+    stdev = stats.standard_deviation(numbers)
     result = calc.add(squared_avg, stdev)  # Step 4: Combine results
     assert pytest.approx(result, 0.01) == 38.83  # Updated expected value
