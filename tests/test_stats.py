@@ -1,3 +1,4 @@
+import unittest
 import pytest
 import math
 import calculatrice.main
@@ -5,10 +6,8 @@ import calculatrice.scientific
 import calculatrice.statistics
 from calculatrice.statistics import Statistics
 
-import unittest
 
-
-class TestStatisticsCalculator:
+class TestStatisticsCalculator(unittest.TestCase):
 
     def test_median(self):
         calc = Statistics()
@@ -32,7 +31,3 @@ class TestStatisticsCalculator:
         # Edge cases
         with pytest.raises(ValueError):
             calc.standard_deviation([])  # Empty list
-
-
-if __name__ == "__main__":
-    unittest.main()
