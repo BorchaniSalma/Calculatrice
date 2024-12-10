@@ -2,6 +2,7 @@ import pytest
 import math
 from calculatrice.statistics import Statistics
 
+
 def test_median():
     calc = Statistics()
     # Valid cases
