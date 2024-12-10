@@ -1,5 +1,4 @@
 [run]
 source = calculatrice
-relative_files = True
 omit =
     */tests/*
