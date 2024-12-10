@@ -1,5 +1,10 @@
+import math
+
 import pytest
 from calculatrice.main import Calculator
+from calculatrice.scientific import Scientific
+from calculatrice.statistics import Statistics
+
 
 # Test add method
 def test_add():
@@ -75,3 +80,46 @@ def test_logging_for_operations(caplog):
     assert "Subtracting 10 - 4" in caplog.text
     assert "Multiplying 3 * 3" in caplog.text
     assert "Dividing 8 / 2" in caplog.text
+
+
+def test_power():
+    calc = Scientific()
+    # Valid cases
+    assert calc.power(2, 3) == 8  # 2^3 = 8
+    assert calc.power(5, 0) == 1  # 5^0 = 1
+    assert calc.power(3, -2) == 1 / 9  # 3^-2 = 1 / 9
+
+def test_logarithm():
+    calc = Scientific()
+    # Valid cases
+    assert math.isclose(calc.logarithm(100, 10), 2)  # log(100, 10) = 2
+    assert math.isclose(calc.logarithm(8, 2), 3)  # log(8, 2) = 3
+    # Default base 10
+    assert math.isclose(calc.logarithm(1000), 3)  # log(1000, 10) = 3
+
+    # Edge cases and errors
+    with pytest.raises(ValueError):
+        calc.logarithm(0, 10)  # Logarithm of 0 is undefined
+    with pytest.raises(ValueError):
+        calc.logarithm(-10, 10)  # Logarithm of negative numbers is undefined
+
+def test_median():
+    calc = Statistics()
+    # Valid cases
+    assert calc.median([1, 2, 3, 4, 5]) == 3
+    assert calc.median([1, 3, 5]) == 3
+    assert calc.median([1, 2, 3, 4]) == 2.5  # Even number of elements
+
+    # Edge cases
+    with pytest.raises(ValueError):
+        calc.median([])  # Empty list
+
+def test_standard_deviation():
+    calc = Statistics()
+    # Valid cases
+    assert math.isclose(calc.standard_deviation([1, 2, 3, 4, 5]), 1.4142135623730951, rel_tol=1e-9)
+    assert math.isclose(calc.standard_deviation([10, 20, 30]), 8.16496580927726, rel_tol=1e-9)
+
+    # Edge cases
+    with pytest.raises(ValueError):
+        calc.standard_deviation([])  # Empty list
