@@ -29,10 +29,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # Run tests and generate coverage report
+      # Run tests with coverage using setup.py
       - name: Run tests with coverage
         run: |
-          coverage run --rcfile=.coveragerc --source=calculatrice -m pytest
+          coverage run --append --source=calculatrice setup.py test
           coverage xml -o coverage.xml
           coverage report
 

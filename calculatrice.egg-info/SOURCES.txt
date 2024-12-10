@@ -1,0 +1,15 @@
+README.md
+pyproject.toml
+setup.py
+calculatrice/__init__.py
+calculatrice/main.py
+calculatrice/scientific.py
+calculatrice/statistics.py
+calculatrice.egg-info/PKG-INFO
+calculatrice.egg-info/SOURCES.txt
+calculatrice.egg-info/dependency_links.txt
+calculatrice.egg-info/top_level.txt
+tests/test_integration.py
+tests/test_main.py
+tests/test_scientific.py
+tests/test_stats.py
