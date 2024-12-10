@@ -1,6 +1,5 @@
 [run]
+source = calculatrice
 relative_files = True
-
-[report]
 omit =
     */tests/*
