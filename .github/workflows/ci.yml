@@ -15,7 +15,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Ensures that SonarQube analysis has full commit history
+          fetch-depth: 0
 
       # Set up Python environment
       - name: Set up Python
@@ -33,8 +33,14 @@ jobs:
       # Run tests and generate coverage report
       - name: Run tests with coverage
         run: |
-          coverage run --source=./calculatrice -m pytest
+          coverage run --rcfile=.coveragerc --source=calculatrice -m pytest
           coverage xml -o coverage.xml
+
+      # Fix coverage paths to be relative (if needed)
+      - name: Fix coverage paths
+        if: ${{ always() }}
+        run: |
+          sed -i 's|<source>.*/Calculatrice/||g' coverage.xml
 
       # SonarCloud analysis with coverage report
       - name: SonarCloud Scan
@@ -43,13 +49,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         with:
-          args: -Dsonar.python.coverage.reportPaths=coverage.xml
-
-      # Optional: Fail the job if the quality gate fails (uncomment to enable)
-      # - name: Check SonarQube Quality Gate
-      #   uses: sonarsource/sonarqube-quality-gate-action@master
-      #   env:
-      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          args: >
+            -Dsonar.python.version=3.9
+            -Dsonar.python.coverage.reportPaths=coverage.xml
 
       # Log in to Docker Hub
       - name: Log in to Docker Hub
