@@ -35,12 +35,13 @@ jobs:
         run: |
           coverage run --rcfile=.coveragerc --source=calculatrice -m pytest
           coverage xml -o coverage.xml
+          coverage report
 
-      # Fix coverage paths to be relative (if needed)
+      # Fix coverage paths and print for debugging
       - name: Fix coverage paths
-        if: ${{ always() }}
         run: |
-          sed -i 's|<source>.*/Calculatrice/||g' coverage.xml
+          sed -i 's|/home/runner/work/Calculatrice/Calculatrice/||g' coverage.xml
+          cat coverage.xml
 
       # SonarCloud analysis with coverage report
       - name: SonarCloud Scan
@@ -64,22 +65,6 @@ jobs:
       - name: Build Docker image
         run: |
           docker build -t ${{ secrets.DOCKER_USERNAME }}/python-github-actions:latest .
-
-      # Install Snyk
-      - name: Install Snyk
-        run: |
-          npm install -g snyk
-
-      # Authenticate Snyk
-      - name: Authenticate Snyk
-        run: |
-          snyk auth ${{ secrets.SNYK_TOKEN }}
-
-      # Run Snyk scan
-      - name: Snyk Docker Image Scan
-        run: |
-          snyk container test ${{ secrets.DOCKER_USERNAME }}/python-github-actions:latest --file=Dockerfile --severity-threshold=high
-        continue-on-error: true
 
       # Push Docker image
       - name: Push Docker image
