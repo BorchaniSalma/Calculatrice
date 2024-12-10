@@ -33,7 +33,7 @@ jobs:
       # Run tests and generate coverage report
       - name: Run tests with coverage
         run: |
-          coverage run --source=calculatrice -m pytest
+          coverage run --source=./calculatrice -m pytest
           coverage xml -o coverage.xml
 
       # SonarCloud analysis with coverage report
