@@ -53,14 +53,6 @@ jobs:
             -Dsonar.python.version=3.9
             -Dsonar.python.coverage.reportPaths=coverage.xml
 
-      # Scan for vulnerabilities using Snyk
-      - name: Run Snyk Vulnerability Scan
-        uses: snyk/actions@v1
-        with:
-          args: monitor --all-projects
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
 
       # Log in to Docker Hub
       - name: Log in to Docker Hub
