@@ -55,11 +55,12 @@ jobs:
 
       # Scan for vulnerabilities using Snyk
       - name: Run Snyk Vulnerability Scan
-        uses: snyk/actions/cli@v3
+        uses: snyk/actions@v1
         with:
           args: monitor --all-projects
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
 
       # Log in to Docker Hub
       - name: Log in to Docker Hub
